@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "description": "",
+
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

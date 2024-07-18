@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const authRouter = require("./routers/auth_routers");
 const userRouter = require("./routers/user_router");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 dotenv.config();
 
 const port = process.env.PORT || 3000;
@@ -16,6 +17,8 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -30,6 +33,12 @@ app.listen(port, () => {
 app.use("/api/user", authRouter);
 
 app.use("/api/auth", userRouter);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

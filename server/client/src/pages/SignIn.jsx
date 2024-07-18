@@ -41,13 +41,11 @@ function SingUp() {
       }
 
       if (data.success === false) {
-        navigate("/unauthorize");
         dispatch(signInFailure(data));
         return;
       }
     } catch (error) {
-      dispatch(signInFailure(error));
-      console.log(error);
+      dispatch(signInFailure(error.message));
     }
   };
   return (
@@ -87,9 +85,7 @@ function SingUp() {
       </div>
 
       <div>
-        <p className="text-red-600 py-1">
-          {error ? error.message || "Something went Wrong" : ""}
-        </p>
+        <p className="text-red-600 py-1">{error ? error.message : ""}</p>
       </div>
     </div>
   );

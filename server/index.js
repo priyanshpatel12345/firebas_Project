@@ -7,8 +7,6 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 dotenv.config();
 
-const port = process.env.PORT || 3000;
-
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -18,7 +16,7 @@ mongoose
     console.log(error);
   });
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 const app = express();
 
@@ -26,7 +24,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-app.listen(port, () => {
+app.listen(3000, () => {
   console.log("Server listening on port 3000");
 });
 

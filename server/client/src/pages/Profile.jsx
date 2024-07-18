@@ -68,7 +68,7 @@ function Profile() {
 
     try {
       dispatch(updateUserStart());
-      const response = await fetch(`api/user/update/${currentUser._id}`, {
+      const response = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function Profile() {
   const handleDelete = async (req, res) => {
     try {
       dispatch(deleteUserStart());
-      const response = await fetch(`api/user/delete/${currentUser._id}`, {
+      const response = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
       const data = await response.json();
